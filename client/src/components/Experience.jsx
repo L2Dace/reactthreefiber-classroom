@@ -10,6 +10,7 @@ import { charactersAtom, socket } from "./socketManager";
 import { useAtom, atom } from "jotai";
 import { useState } from "react";
 import * as THREE from "three";
+import { ZeroNew } from "./ZeroNew";
 
 export const Experience = () => {
   const [characters] = useAtom(charactersAtom);
@@ -32,7 +33,7 @@ export const Experience = () => {
         <planeGeometry args={[10, 10]} />
         <meshStandardMaterial color="f0f0f0" />
       </mesh>
-      {characters.map((characters) => (
+      {/* {characters.map((characters) => (
         <AnimatedWoman
           key={characters.id}
           position={
@@ -47,9 +48,9 @@ export const Experience = () => {
           bottomColor={characters.bottomColor}
         />
       ))}
-      ,
-      {/* {characters.map((characters) => (
-        <AnimatedZero
+      , */}
+      {characters.map((characters) => (
+        <ZeroNew
           key={characters.id}
           position={
             new THREE.Vector3(
@@ -61,7 +62,7 @@ export const Experience = () => {
           hairColorZ={characters.hairColorZ}
           handColorZ={characters.handColorZ}
         />
-      ))} */}
+      ))}
     </>
   );
 };
