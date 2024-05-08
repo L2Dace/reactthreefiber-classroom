@@ -26,7 +26,7 @@ export const Experience = () => {
       <mesh
         rotation-x={-Math.PI / 2}
         position-y={-0.001}
-        onClick={(e) => socket.emit("move", [e.point.x, 0, e.point.z])}
+        onDoubleClick={(e) => socket.emit("move", [e.point.x, 0, e.point.z])}
         onPointerEnter={() => setOnFloor(true)}
         onPointerLeave={() => setOnFloor(false)}
       >
