@@ -1,16 +1,16 @@
 import {
   ContactShadows,
   Environment,
+  Gltf,
   OrbitControls,
   useCursor,
 } from "@react-three/drei";
-import { AnimatedWoman } from "./AnimatedWoman";
-import { AnimatedZero } from "./AnimatedZero";
 import { charactersAtom, socket } from "./socketManager";
 import { useAtom, atom } from "jotai";
 import { useState } from "react";
 import * as THREE from "three";
-import { ZeroNew } from "./ZeroNew";
+// import { ZeroNew } from "./ZeroNew";
+import { AnimatedGirl } from "./AnimatedGirl";
 
 export const Experience = () => {
   const [characters] = useAtom(charactersAtom);
@@ -22,19 +22,21 @@ export const Experience = () => {
       <Environment preset="sunset" />
       <ambientLight intensity={0.3} />
       <ContactShadows blur={2} />
+      <directionalLight intensity={0.3} position={[25,28,-25]} />
       <OrbitControls />
       <mesh
-        rotation-x={-Math.PI / 2}
+        // rotation-x={-Math.PI / 2}
         position-y={-0.001}
         onDoubleClick={(e) => socket.emit("move", [e.point.x, 0, e.point.z])}
         onPointerEnter={() => setOnFloor(true)}
         onPointerLeave={() => setOnFloor(false)}
       >
-        <planeGeometry args={[10, 10]} />
-        <meshStandardMaterial color="f0f0f0" />
+        {/* <planeGeometry args={[10, 10]} />
+        <meshStandardMaterial color="f0f0f0" /> */}
+        <Gltf scale={[0.75,0.75,0.75]} src="/models/Phongtruyenthong.glb" castShadow/>
       </mesh>
-      {/* {characters.map((characters) => (
-        <AnimatedWoman
+      {characters.map((characters) => (
+        <AnimatedGirl
           key={characters.id}
           position={
             new THREE.Vector3(
@@ -43,13 +45,10 @@ export const Experience = () => {
               characters.position[2]
             )
           }
-          hairColor={characters.hairColor}
-          topColor={characters.topColor}
-          bottomColor={characters.bottomColor}
         />
       ))}
-      , */}
-      {characters.map((characters) => (
+      ,
+      {/* {characters.map((characters) => (
         <ZeroNew
           key={characters.id}
           position={
@@ -62,7 +61,7 @@ export const Experience = () => {
           hairColorZ={characters.hairColorZ}
           handColorZ={characters.handColorZ}
         />
-      ))}
+      ))} */}
     </>
   );
 };
